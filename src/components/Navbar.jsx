@@ -2,10 +2,18 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Logo from './Logo';
+import { FaBars, FaTimes } from 'react-icons/fa';
 
 const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const location = useLocation();
+
+    useEffect(() => {
+        const handleResize = () => setMobileMenuOpen(false); // Close on resize > 768px could be added, but simple close is enough
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -37,7 +45,14 @@ const Navbar = () => {
         }}>
             <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Logo />
-                <ul style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
+                <div
+                    className="mobile-menu-btn"
+                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                >
+                    {mobileMenuOpen ? <FaTimes /> : <FaBars />}
+                </div>
+
+                <ul className="nav-links">
                     <li>
                         <Link to="/" style={{ fontSize: '0.9rem', fontWeight: 500, opacity: 0.8, color: 'var(--text-primary)' }}>
                             Home
@@ -75,6 +90,24 @@ const Navbar = () => {
                         </Link>
                     </li>
                 </ul>
+
+                <div className={`mobile-menu-overlay ${mobileMenuOpen ? 'open' : ''}`}>
+                    <Link to="/" className="mobile-link" onClick={() => setMobileMenuOpen(false)}>Home</Link>
+
+                    {location.pathname === '/' ? (
+                        <a href="#about" className="mobile-link" onClick={(e) => { e.preventDefault(); scrollToSection('about'); setMobileMenuOpen(false); }}>About</a>
+                    ) : (
+                        <Link to="/#about" className="mobile-link" onClick={() => setMobileMenuOpen(false)}>About</Link>
+                    )}
+
+                    {location.pathname === '/' ? (
+                        <a href="#projects" className="mobile-link" onClick={(e) => { e.preventDefault(); scrollToSection('projects'); setMobileMenuOpen(false); }}>Projects</a>
+                    ) : (
+                        <Link to="/#projects" className="mobile-link" onClick={() => setMobileMenuOpen(false)}>Projects</Link>
+                    )}
+
+                    <Link to="/contact" className="mobile-link" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
+                </div>
             </div>
         </nav>
     );
