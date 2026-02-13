@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 
 const Contact = () => {
     return (
@@ -8,9 +9,9 @@ const Contact = () => {
                     Have a project in mind? I'm currently available for freelance work and open to full-time opportunities.
                     Send me a message and let's discuss your ideas.
                 </p>
-                <a href="mailto:hello@example.com" className="btn" style={{ fontSize: '1.2rem', padding: '1rem 3rem' }}>
+                <Link to="/contact" className="btn" style={{ fontSize: '1.2rem', padding: '1rem 3rem' }}>
                     Say Hello
-                </a>
+                </Link>
             </div>
         </section>
     );

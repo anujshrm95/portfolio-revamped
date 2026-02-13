@@ -1,4 +1,6 @@
 
+import TiltCard from './TiltCard';
+
 const About = () => {
     return (
         <section id="about" className="section">
@@ -17,10 +19,10 @@ const About = () => {
                             { number: "3+", label: "Years Experience" },
                             { number: "100%", label: "Client Satisfaction" }
                         ].map((stat, index) => (
-                            <div key={index} className="glass" style={{ padding: '2rem', textAlign: 'center', borderColor: 'var(--accent-primary)' }}>
+                            <TiltCard key={index} style={{ padding: '2rem', textAlign: 'center' }}>
                                 <h3 className="text-gradient" style={{ fontSize: '3.5rem', marginBottom: '0.5rem', fontFamily: 'var(--font-mono)' }}>{stat.number}</h3>
                                 <p style={{ color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '1px', fontSize: '0.9rem' }}>{stat.label}</p>
-                            </div>
+                            </TiltCard>
                         ))}
                     </div>
 

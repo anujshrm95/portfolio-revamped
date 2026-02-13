@@ -1,3 +1,5 @@
+import TiltCard from './TiltCard';
+
 const Process = () => {
     const steps = [
         { title: "Develop", desc: "Building robust, scalable architectures.", color: "var(--accent-primary)" },
@@ -30,16 +32,12 @@ const Process = () => {
                     }} className="process-line" />
 
                     {steps.map((step, index) => (
-                        <div key={index} className="glass" style={{
+                        <TiltCard key={index} style={{
                             padding: '2rem',
                             textAlign: 'center',
                             position: 'relative',
-                            zIndex: 1,
-                            transition: 'transform 0.3s ease'
-                        }}
-                            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-10px)'}
-                            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-                        >
+                            zIndex: 1
+                        }}>
                             <div style={{
                                 width: '80px',
                                 height: '80px',
@@ -57,7 +55,7 @@ const Process = () => {
                             </div>
                             <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>{step.title}</h3>
                             <p style={{ color: 'var(--text-secondary)' }}>{step.desc}</p>
-                        </div>
+                        </TiltCard>
                     ))}
                 </div>
             </div>

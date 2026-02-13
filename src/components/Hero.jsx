@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import RevealOnScroll from './RevealOnScroll';
 
 const Hero = () => {
@@ -134,9 +135,9 @@ const Hero = () => {
                         <a href="#projects" className="btn btn-primary">
                             Selected Works
                         </a>
-                        <a href="#contact" className="btn btn-outline">
-                            Let's Talk
-                        </a>
+                        <Link to="/contact" className="btn btn-outline">
+                            Say Hello
+                        </Link>
                     </div>
                 </RevealOnScroll>
             </div>
